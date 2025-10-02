@@ -1,10 +1,14 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  experimental: {
-    appDir: true,
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  output: 'standalone',
+  trailingSlash: false,
+  typescript: {
+    ignoreBuildErrors: false,
   },
-  // quan trọng khi bạn để app trong src/
-  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  eslint: {
+    ignoreDuringBuilds: false,
+  },
 };
 
-module.exports = nextConfig;
+export default nextConfig;
