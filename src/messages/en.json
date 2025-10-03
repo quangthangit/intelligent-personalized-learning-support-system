@@ -1,0 +1,16 @@
+{
+  "Dashboard": {
+    "title": "Welcome to Learning Support System",
+    "description": "Intelligent Personalized Learning Support System helps you learn more effectively."
+  },
+  "Navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "Common": {
+    "language": "Language",
+    "english": "English",
+    "vietnamese": "Vietnamese"
+  }
+}

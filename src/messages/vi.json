@@ -1,0 +1,16 @@
+{
+  "Dashboard": {
+    "title": "Chào mừng đến với Hệ thống Hỗ trợ Học tập",
+    "description": "Hệ thống Hỗ trợ Học tập Thông minh Cá nhân hóa giúp bạn học tập hiệu quả hơn."
+  },
+  "Navigation": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu", 
+    "contact": "Liên hệ"
+  },
+  "Common": {
+    "language": "Ngôn ngữ",
+    "english": "Tiếng Anh",
+    "vietnamese": "Tiếng Việt"
+  }
+}
