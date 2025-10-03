@@ -2,15 +2,16 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
 
 export default async function LocaleLayout({
   children,
-  params
+  params,
 }: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>; 
+  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await params; 
+  const { locale } = await params;
 
   const messages = await getMessages({ locale });
 
@@ -20,6 +21,7 @@ export default async function LocaleLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <NextIntlClientProvider locale={locale} messages={messages}>
             <SidebarProvider>
+              <Toaster richColors closeButton position="top-right" />
               {children}
             </SidebarProvider>
           </NextIntlClientProvider>

@@ -1,14 +1,17 @@
+import { useTranslations } from "next-intl";
+
 export function FooterLinks() {
+  const t = useTranslations("Login");
   return (
     <div className="text-center text-xs text-gray-500 dark:text-gray-400 space-y-1">
-      <p>Bằng việc đăng nhập, bạn đồng ý với</p>
+      <p>{t("descriptionFooter")}</p>
       <p>
         <a href="#" className="text-teal-600 hover:underline">
-          Điều khoản dịch vụ
+          {t("termsOfService")}
         </a>
         {" và "}
         <a href="#" className="text-teal-600 hover:underline">
-          Chính sách bảo mật
+          {t("privacyPolicy")}
         </a>
       </p>
     </div>

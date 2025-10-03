@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button"
+import { useTranslations } from "next-intl";
 
 export function SocialLogin() {
+  const t = useTranslations("Login");
   return (
     <div className="space-y-6">
       {/* Divider */}
@@ -10,7 +12,7 @@ export function SocialLogin() {
         </div>
         <div className="relative flex justify-center text-xs uppercase">
           <span className="bg-white dark:bg-gray-950 px-4 py-1 text-gray-500 dark:text-gray-400 font-medium rounded-full border border-gray-200 dark:border-gray-700 shadow-sm">
-            Hoặc tiếp tục với
+            {t("orContinueWith")}
           </span>
         </div>
       </div>
@@ -97,7 +99,7 @@ export function SocialLogin() {
         <div className="flex items-center gap-2">
           <div className="h-2 w-2 bg-teal-500 rounded-full animate-pulse"></div>
           <p className="text-xs text-teal-700 dark:text-teal-300 font-medium">
-            Thông tin của bạn được bảo mật với mã hóa end-to-end
+            {t("securityNotice")}
           </p>
         </div>
       </div>

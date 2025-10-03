@@ -1,60 +1,77 @@
 "use client"
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Alert, AlertDescription } from "@/components/ui/alert"
-import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react"
-import { useAuthStore } from "@/stores/authStore"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { LoginFormData, loginSchema } from "@/lib/schemas/auth"
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { EyeIcon, EyeOffIcon, Loader2 } from "lucide-react";
+import { useAuthStore } from "@/stores/authStore";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { LoginFormData, loginSchema } from "@/lib/schemas/auth";
+import { toast } from "sonner";
+import { useTranslations } from "next-intl";
 
 export function LoginForm() {
-  const { login, loading, error } = useAuthStore()
-  const [showPassword, setShowPassword] = useState(false)
+  const t = useTranslations("Login");
+  const router = useRouter();
+  const { login, loading, error } = useAuthStore();
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
+    setError
   } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
-      password: ""
-    }
-  })
+      password: "",
+    },
+  });
 
   const onSubmit = async (data: LoginFormData) => {
     try {
-      await login(data.email, data.password)
-      // Redirect sẽ được xử lý trong authStore
+      await login(data.email, data.password);
+      toast.success(t("loginSuccess") || "Login successful");
+      router.push("/dashboard")
     } catch (error) {
-      console.error(error)
+      console.error("Login error:", error);
+      toast.error(t("loginError") || "Login failed");
     }
-  }
+  };
 
-  const isLoading = loading || isSubmitting
+  const isLoading = loading || isSubmitting;
 
   return (
     <Card className="border-0 shadow-2xl bg-white/50 backdrop-blur-sm dark:bg-gray-950/50">
       <CardHeader className="space-y-1 text-center">
         <CardTitle className="text-3xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-          Đăng nhập
+          {t("title")}
         </CardTitle>
         <CardDescription className="text-gray-600 dark:text-gray-400">
-          Nhập email và mật khẩu để truy cập tài khoản
+          {t("description")}
         </CardDescription>
       </CardHeader>
-      
+
       <CardContent>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           {/* Global Error */}
           {(error || errors.root) && (
-            <Alert variant="destructive" className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/50">
+            <Alert
+              variant="destructive"
+              className="border-red-200 bg-red-50 dark:border-red-800 dark:bg-red-950/50"
+            >
               <AlertDescription>
                 {error || errors.root?.message}
               </AlertDescription>
@@ -63,8 +80,11 @@ export function LoginForm() {
 
           {/* Email Field */}
           <div className="space-y-2">
-            <Label htmlFor="email" className="text-gray-700 dark:text-gray-300 font-medium">
-              Email
+            <Label
+              htmlFor="email"
+              className="text-gray-700 dark:text-gray-300 font-medium"
+            >
+              {t("email")}
             </Label>
             <Input
               id="email"
@@ -72,7 +92,9 @@ export function LoginForm() {
               placeholder="example@email.com"
               disabled={isLoading}
               className={`h-12 border-gray-200 dark:border-gray-700 focus:border-teal-500 focus:ring-teal-500 ${
-                errors.email ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""
+                errors.email
+                  ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                  : ""
               }`}
               {...register("email")}
             />
@@ -86,12 +108,12 @@ export function LoginForm() {
           {/* Password Field */}
           <div className="space-y-2">
             <div className="flex items-center justify-between">
-              <Label htmlFor="password" className="text-gray-700 dark:text-gray-300 font-medium">
-                Mật khẩu
+              <Label
+                htmlFor="password"
+                className="text-gray-700 dark:text-gray-300 font-medium"
+              >
+                {t("password")}
               </Label>
-              <a href="#" className="text-sm text-teal-600 hover:text-teal-700 font-medium transition-colors">
-                Quên mật khẩu?
-              </a>
             </div>
             <div className="relative">
               <Input
@@ -100,7 +122,9 @@ export function LoginForm() {
                 placeholder="••••••••"
                 disabled={isLoading}
                 className={`h-12 pr-12 border-gray-200 dark:border-gray-700 focus:border-teal-500 focus:ring-teal-500 ${
-                  errors.password ? "border-red-500 focus:border-red-500 focus:ring-red-500" : ""
+                  errors.password
+                    ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+                    : ""
                 }`}
                 {...register("password")}
               />
@@ -125,22 +149,22 @@ export function LoginForm() {
           </div>
 
           {/* Submit Button */}
-          <Button 
-            type="submit" 
+          <Button
+            type="submit"
             disabled={isLoading}
             className="w-full h-12 bg-gradient-to-r from-teal-500 to-cyan-600 hover:from-teal-600 hover:to-cyan-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
             {isLoading ? (
               <div className="flex items-center gap-2">
                 <Loader2 className="h-4 w-4 animate-spin" />
-                Đang đăng nhập...
+                {t("loginButton")}
               </div>
             ) : (
-              "Đăng nhập"
+              t("title")
             )}
           </Button>
         </form>
       </CardContent>
     </Card>
-  )
+  );
 }

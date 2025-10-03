@@ -1,6 +1,6 @@
 // stores/authStore.ts
 import { create } from "zustand";
-import {  User } from "../lib/schemas/auth";
+import { User } from "../lib/schemas/auth";
 
 interface AuthState {
   user: User | null;
@@ -34,7 +34,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       }
 
       const data = await res.json();
-  
+
       set({ user: data.user, loading: false, error: null });
       localStorage.setItem("user", JSON.stringify(data.user));
 

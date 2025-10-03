@@ -5,12 +5,24 @@
   },
   "Navigation": {
     "home": "Trang chủ",
-    "about": "Giới thiệu", 
+    "about": "Giới thiệu",
     "contact": "Liên hệ"
   },
   "Common": {
     "language": "Ngôn ngữ",
     "english": "Tiếng Anh",
     "vietnamese": "Tiếng Việt"
+  },
+  "Login": {
+    "title": "Đăng nhập",
+    "description": "Nhập email và mật khẩu để truy cập tài khoản",
+    "email": "Email",
+    "loginButton": "Đang đăng nhập...",
+    "password": "Mật khẩu",
+    "orContinueWith": "Hoặc tiếp tục với",
+    "securityNotice": "Thông tin của bạn được bảo mật với mã hóa đầu cuối",
+    "termsOfService": "Điều khoản dịch vụ",
+    "privacyPolicy": "Chính sách bảo mật",
+    "descriptionFooter": "Bằng cách đăng nhập, bạn đồng ý với Điều khoản dịch vụ và Chính sách bảo mật của chúng tôi."
   }
 }

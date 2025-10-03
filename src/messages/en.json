@@ -12,5 +12,17 @@
     "language": "Language",
     "english": "English",
     "vietnamese": "Vietnamese"
+  },
+  "Login": {
+    "title": "Login",
+    "description": "Enter your email and password to access your account",
+    "email": "Email",
+    "loginButton": "Logging in...",
+    "password": "Password",
+    "orContinueWith" : "Or continue with",
+    "securityNotice" : "Your information is secure with end-to-end encryption",
+    "termsOfService" : "Terms of Service",
+    "privacyPolicy" : "Privacy Policy",
+    "descriptionFooter" : "By logging in, you agree to our Terms of Service and Privacy Policy."
   }
 }

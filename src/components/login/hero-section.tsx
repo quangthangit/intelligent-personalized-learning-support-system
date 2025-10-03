@@ -37,7 +37,7 @@ export function HeroSection() {
         {/* Testimonial */}
         <div className="mt-16 p-6 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20">
           <p className="text-white/90 italic mb-4">
-            Edumentum transformed my career. The courses are incredibly well-structured and the community support is amazing
+            "Edumentum transformed my career. The courses are incredibly well-structured and the community support is amazing!"
           </p>
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500"></div>
